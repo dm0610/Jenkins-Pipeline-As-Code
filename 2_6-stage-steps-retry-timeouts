@@ -1,0 +1,34 @@
+pipeline {
+    agent any
+    stages {
+        stage("retry") {
+            steps{
+                retry(3) {
+                    echo "before thowing error"
+                    error "error in retry"
+                }
+                echo "after retry(3)"
+            }
+        }
+        stage("timeouts") {
+            steps{
+                timeout(time: 1, unit: "SECONDS") //DAYS,HOURS,MICROSECONDS,MINUTES,NANOSECONDS,SECONDS
+                {
+                    echo "sleeping in timeout"
+                    sleep:3
+                }
+            }
+        }
+        stage("retry-timeouts") {
+            steps{
+                retry(3){
+                    timeout(time: 1, unit: "SECONDS") //DAYS,HOURS,MICROSECONDS,MINUTES,NANOSECONDS,SECONDS
+                    {
+                        echo "sleeping in timeout"
+                        sleep:3
+                    }
+                }
+            }
+        }
+    }
+}

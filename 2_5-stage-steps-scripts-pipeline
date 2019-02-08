@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage("Build") {
+        stage("script") {
             steps {
                 script{
                     def name = "Anton"
