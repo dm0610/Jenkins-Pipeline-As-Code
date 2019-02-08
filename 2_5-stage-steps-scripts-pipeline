@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages {
+        stage("Build") {
+            steps {
+                script{
+                    def name = "Anton"
+                    if(name == "Anton")
+                        println("hi $(name)")
+                    else
+                        println("Hello human")
+                    sleep 2
+                    echo "end of script"
+                }
+            }
+        }
+    }
+}

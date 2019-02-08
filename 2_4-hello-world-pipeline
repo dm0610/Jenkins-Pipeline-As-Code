@@ -1,0 +1,15 @@
+pipeline{
+    agent{
+      node{
+          label = "Slave1"
+          customworkspace = "/home/ansible/customworkspace"
+      }
+    }
+    stages{
+      stage("Build"){
+        steps{
+            echo "Hello World!"
+        }
+      }
+    }
+}
